@@ -1,6 +1,8 @@
 -include ../../config.mk
 -include ../../tools/kconfig/.config
 
+include zsipos_config.mk
+
 export SONAME
 VERSION:=2.0.0
 SONAME:=2
