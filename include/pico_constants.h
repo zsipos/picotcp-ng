@@ -28,7 +28,9 @@
 #define INCLUDE_PICO_CONST
 /* Included from pico_config.h */
 
+#ifndef __KERNEL__
 #include <stdint.h>
+#endif
 
 /** Non-endian dependant constants */
 #define PICO_SIZE_IP4    4

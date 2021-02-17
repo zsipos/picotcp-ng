@@ -27,7 +27,9 @@
 #ifndef PICO_TFTP_H
 #define PICO_TFTP_H
 
+#ifndef __KERNEL__
 #include <stdint.h>
+#endif
 #include <stddef.h>
 #include "pico_addressing.h"
 
