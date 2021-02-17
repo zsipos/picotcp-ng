@@ -171,7 +171,7 @@ static inline struct pico_frame *pico_dequeue(struct pico_queue *q)
 
     q->head = p->next;
     q->frames--;
-    q->size -= p->buffer_len - q->overhead;
+    q->size -= p->buffer_len + q->overhead;
     if (q->head == NULL)
         q->tail = NULL;
 
