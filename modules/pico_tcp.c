@@ -3041,6 +3041,28 @@ int pico_tcp_output(struct pico_socket *s, int loop_score)
         }
     }
 
+#if 1 //workaround tcp stall
+    if (!(t->sock.ev_pending & PICO_SOCK_EV_WR) && !t->retrans_tmr) {
+    	static int counter = 0;
+
+    	if (counter++ == 10) {
+			int do_check = 0;
+			struct pico_tree_node *idx, *temp;
+
+			counter = 0;
+			pico_tree_foreach_safe(idx, &t->tcpq_out.pool, temp)
+			{
+				do_check = 1;
+				break;
+			}
+			if (do_check) {
+				tcp_dbg("repair check\n");
+				tcp_retrans_timeout_check_queue(t);
+			}
+    	}
+    }
+#endif
+
     return loop_score;
 }
 
