@@ -261,7 +261,9 @@ MOCKABLE int32_t pico_network_receive(struct pico_frame *f)
     }
 #endif
     else {
+#ifdef PICO_DEBUG_NOTFOUND
         dbg("Network not found.\n");
+#endif
         pico_frame_discard(f);
         return -1;
     }
